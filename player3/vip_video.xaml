@@ -1,0 +1,22 @@
+﻿<Window x:Class="player3.vip_video"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:player3"
+        mc:Ignorable="d"
+        x:Name="vip_form"
+        Title="vip_video" Height="450" Width="800"
+        WindowStyle="None" Background="#FF5D5D5D" Loaded="Window_Loaded" Activated="Window_Activated" >
+    <Border BorderBrush="DarkGray" BorderThickness="7"  Grid.ColumnSpan="2">
+        <Grid>
+            <MediaElement 
+                x:Name="vip" 
+                LoadedBehavior="Manual" 
+                UnloadedBehavior ="Close"
+                Stretch="Fill" MediaEnded="Vip_MediaEnded" MediaFailed="Vip_MediaFailed" 
+                >
+            </MediaElement>
+        </Grid>
+    </Border>
+</Window>
