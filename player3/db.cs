@@ -339,14 +339,14 @@ namespace player3
                         MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                         adapter.FillAsync(dt);
 
-                        return new SettingsDb(Int32.Parse(dt.Rows[0][0].ToString()), Int32.Parse(dt.Rows[0][1].ToString()));
+                        return new SettingsDb(Int32.Parse(dt.Rows[0][0].ToString()), Int32.Parse(dt.Rows[0][1].ToString()), Int32.Parse(dt.Rows[0][2].ToString()));
                         
                     }
                 }
             }
             catch
             {
-                return new SettingsDb(0, 5);
+                return new SettingsDb(0, 5, 0);
             }
         }
     }

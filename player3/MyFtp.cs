@@ -105,7 +105,10 @@ namespace player3
                 FtpWebResponse ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
                 ftpResponse.Close();
             }
-            catch { };
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            };
         }
 
         public void CreatePanel(string path, string PanelName, string user, string pass)

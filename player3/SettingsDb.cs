@@ -11,11 +11,13 @@ namespace player3
     {
         public int vip { get; set; }
         public int RunText { get; set; }
+        public int Orientation { get; set; }
 
-        public SettingsDb(int RunText, int vip)
+        public SettingsDb(int RunText, int vip, int Orientation)
         {
             this.vip = vip;
             this.RunText = RunText;
+            this.Orientation = Orientation;
         }
 
         public SettingsDb()

@@ -32,7 +32,7 @@ namespace player3
            InitializeComponent();
         }
 
-        string version = "1.0.1";
+        string version = "1.0.2";
 
         Settings settings = new Settings();
         Db db = new Db(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
@@ -159,9 +159,22 @@ namespace player3
         // Loaded
         private void LoadPlayer(object sender, RoutedEventArgs e)
         {
+            /* получаем настройки из БД:
+             * если нет подключения к интернету, то по умолчанию бегущая строка скрыта и
+             * время показа ВИП каждые 5 минут
+            */
+
+            settingsDb = db.GetSettingsDB(settings.UserId, settings.PanelId);
+
             // разворачиваем экран
-            Desktop d = new Desktop();
-            Desktop.Rotate(1, Desktop.Orientations.DEGREES_CW_270);
+            if (settingsDb.Orientation == 0)
+            {
+                Desktop.Rotate(1, Desktop.Orientations.DEGREES_CW_270);
+            }
+            else
+            {
+                Desktop.Rotate(1, Desktop.Orientations.DEGREES_CW_90);
+            }
 
             // отображаем заставку
             SplashScreen splash = new SplashScreen(@"img\splash.jpeg");
@@ -169,12 +182,6 @@ namespace player3
             Thread.Sleep(5000);
 
             MyFtp Ftp = new MyFtp();
-
-            /* получаем настройки из БД:
-             * если нет подключения к интернету, то по умолчанию бегущая строка скрыта и
-             * время показа ВИП каждые 5 минут
-            */
-            settingsDb = db.GetSettingsDB(settings.UserId, settings.PanelId);
             
             // если не заданы все параметры
             if (!settings.confirmed)
